@@ -1,0 +1,10 @@
+asgiref==3.6.0
+Django==3.2.18
+fpdf==1.7.2
+pip==22.3.1
+pypdf2==3.0.1
+pytz==2022.7.1
+setuptools==65.7.0
+sqlparse==0.4.3
+typing-extensions==4.5.0
+wheel==0.38.4

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+
+    <!-- Latest compiled and minified CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'api/css/style.css' %}">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <title>File</title>
+</head>
+<body>
+
+<div class="container mb-5" >
+    <h2 class="alert alert-info text-center p-3" style="color:red">File Checker</h2>
+    <div class="row">
+        <div class="col-sm-7">
+            <h4 class="text-center mb-3"><u>File Content</u></h4>
+            {% if content %}
+            <textarea cols="15" rows="30" class="form-control">{{content}}</textarea>
+            {% endif %}
+
+        </div>
+
+
+        <div class="col-sm-5">
+            <h4 class="text-center mb-3"><u>Upload file</u></h4>
+            <form action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {% for fm in form %}
+            <div class="form-group mb-3">
+                {{fm.label_tag}} {{fm}} <small class="text-danger">{{fm.errors|striptags}}</small>
+            </div>
+            {% endfor %}
+                <p>(Upload only .pdf file)</p>
+            <input type="submit" value="Upload" class="btn btn-success"><br><br>
+            </form>
+                <div>
+                   <form action="{ url 'search'}" method="post"></form>
+                    <input type="text" name="q" class="form-control"> <br>
+                    <input type="submit" value="Search" class="btn btn-info">
+                    <input type="reset" class="btn btn-info">
+
+                    </form>
+
+                </div>
+
+
+            {% if form.non_field_errors %}
+            {% for error in form.non_field_errors %}
+            <p class="alert alert-danger my-3">{{error}}</p>
+            {% endfor %}
+            {% endif %}
+        </div>
+
+
+        </div>
+    </div>
+</div>
+
+
+<!--javascript and jquery-->
+<script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+</body>
+</html>
